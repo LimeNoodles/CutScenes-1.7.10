@@ -14,8 +14,8 @@ import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StatCollector;
 
+import net.minecraft.util.text.translation.I18n;
 import org.apache.logging.log4j.Level;
 import org.lwjgl.opengl.GL11;
 
@@ -33,9 +33,9 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 import com.google.gson.annotations.SerializedName;
 
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * Actors are images / sound / text added to a current segment or cutscene
@@ -309,7 +309,7 @@ public class ActorObject implements Comparable
 		{
 			int lineOffset = index * fontObj.FONT_HEIGHT + 2;
 	
-			String line = StatCollector.translateToLocal((String) itWrap.next());
+			String line = I18n.translateToLocal((String) itWrap.next());
 			
 			int textWidth = fontObj.getStringWidth(line);
 			this.alignment.getScreenAlignment(mc, alignment, textWidth, fontObj.FONT_HEIGHT);
@@ -330,7 +330,7 @@ public class ActorObject implements Comparable
 	
 	private void DrawImage(Minecraft mc)
 	{
-		ScaledResolution resolution= new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
+		ScaledResolution resolution= new ScaledResolution(mc);
 		
 		int scaledImageWidth = this.imageWidth;
 		int scaledImageHeight = this.imageHeight;

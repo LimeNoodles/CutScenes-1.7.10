@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.command.CommandBase;
+import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
@@ -11,18 +12,19 @@ import net.minecraft.server.MinecraftServer;
 import com.gendeathrow.cutscene.core.CutScene;
 import com.gendeathrow.cutscene.network.packet.PacketScene;
 import com.gendeathrow.cutscene.network.packet.PacketScene.SceneControls;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 
 public class CommandScene extends CommandBase 
 {
 
 	@Override
-	public String getCommandName() 
+	public String getName()
 	{
 		return "cutscene";
 	}
 
 	@Override
-	public String getCommandUsage(ICommandSender p_71518_1_) 
+	public String getUsage(ICommandSender p_71518_1_)
 	{
 		return "/cutscene <playername> <play> <CutScene ID>";
 	}
@@ -34,9 +36,8 @@ public class CommandScene extends CommandBase
     }
 	
 	@Override
-	public void processCommand(ICommandSender commandsender, String[] astring) 
-	{
-		EntityPlayerMP player = getPlayer(commandsender, astring[0]);
+	public void execute(MinecraftServer server, ICommandSender commandsender, String[] astring) throws CommandException {
+		EntityPlayerMP player = getPlayer(server, commandsender, astring[0]);
 		
 		String sceneID = astring[2];
 		
@@ -44,21 +45,16 @@ public class CommandScene extends CommandBase
 	}
 	
 	@SuppressWarnings("unchecked")
-	@Override
     public List<String> addTabCompletionOptions(ICommandSender sender, String[] strings)
     {
         if(strings.length == 1)
         {
-        	return getListOfStringsMatchingLastWord(strings, MinecraftServer.getServer().getAllUsernames());
+        	return getListOfStringsMatchingLastWord(strings, FMLCommonHandler.instance().getMinecraftServerInstance().getServer().getOnlinePlayerNames());
         } else if(strings.length == 2)
         {
         	return getListOfStringsMatchingLastWord(strings, new String[]{"play"});
         } 
-        // TODO have a list of all registered jsons.
-//        else if(strings.length == 3)
-//        {
-//        	return getListOfStringsMatchingLastWord(strings, new String[]{temp, sanity, water, air});
-//        } 
+
         else
         {
         	return new ArrayList<String>();

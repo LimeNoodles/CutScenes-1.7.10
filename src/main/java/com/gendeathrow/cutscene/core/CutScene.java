@@ -4,6 +4,7 @@ import net.minecraft.command.ICommandManager;
 import net.minecraft.command.ServerCommandManager;
 import net.minecraft.server.MinecraftServer;
 
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import org.apache.logging.log4j.Logger;
 
 import com.gendeathrow.cutscene.core.command.CommandScene;
@@ -78,7 +79,7 @@ public class CutScene
 		@EventHandler
 		public void serverStart(FMLServerStartingEvent event)
 		{
-			MinecraftServer server = MinecraftServer.getServer();
+			MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance().getServer();
 			ICommandManager command = server.getCommandManager();
 			ServerCommandManager manager = (ServerCommandManager) command;
 			
