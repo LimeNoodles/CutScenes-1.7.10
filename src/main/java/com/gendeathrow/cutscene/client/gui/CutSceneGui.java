@@ -13,8 +13,10 @@ import com.gendeathrow.cutscene.utils.GsonReader;
 import com.gendeathrow.cutscene.utils.RenderAssist;
 import com.gendeathrow.cutscene.utils.Utils;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.io.IOException;
 
 @SideOnly(Side.CLIENT)
 public class CutSceneGui extends GuiScreen
@@ -58,7 +60,7 @@ public class CutSceneGui extends GuiScreen
 	@Override
     public void initGui() 
     {
-		this.fontObj = this.fontRendererObj;
+		this.fontObj = this.fontRenderer;
 		
 		this.reloadButton = new GuiButton(0, this.width - 50, this.height - 30, 15, 20,  "R");
 		this.reloadButton.visible = false;
@@ -95,8 +97,7 @@ public class CutSceneGui extends GuiScreen
 	 }
 	
 	@Override
-    protected void keyTyped(char p_73869_1_, int p_73869_2_)
-    {
+    protected void keyTyped(char p_73869_1_, int p_73869_2_) throws IOException {
 		
 		if(p_73869_2_ == Keyboard.KEY_SPACE)
 		{
@@ -126,7 +127,7 @@ public class CutSceneGui extends GuiScreen
 
 		this.scene.DrawCutScene();
 		
-		if(this.scene.showDebug) this.fontRendererObj.drawString("Render Duration: "+Utils.getTimeFormater(Minecraft.getSystemTime() - this.startTime),0, 0, RenderAssist.getColorFromRGBA(255, 255, 255, 255));
+		if(this.scene.showDebug) this.fontRenderer.drawString("Render Duration: "+Utils.getTimeFormater(Minecraft.getSystemTime() - this.startTime),0, 0, RenderAssist.getColorFromRGBA(255, 255, 255, 255));
 		
 		super.drawScreen(par1, par2, par3);
 		this.renderTicks++;

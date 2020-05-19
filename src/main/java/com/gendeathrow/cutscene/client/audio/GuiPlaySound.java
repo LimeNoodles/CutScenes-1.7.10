@@ -1,12 +1,14 @@
 package com.gendeathrow.cutscene.client.audio;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.audio.ISound;
-import net.minecraft.client.audio.ITickableSound;
+import net.minecraft.client.audio.*;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.ResourceLocation;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.util.SoundCategory;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
 
 @SideOnly(Side.CLIENT)
 public class GuiPlaySound implements ISound, ITickableSound
@@ -51,9 +53,25 @@ public class GuiPlaySound implements ISound, ITickableSound
 	}
 	
 	@Override
-	public ResourceLocation getPositionedSoundLocation() 
+	public ResourceLocation getSoundLocation()
 	{
 		return this.resourceLocation;
+	}
+
+	@Nullable
+	@Override
+	public SoundEventAccessor createAccessor(SoundHandler handler) {
+		return null;
+	}
+
+	@Override
+	public Sound getSound() {
+		return null;
+	}
+
+	@Override
+	public SoundCategory getCategory() {
+		return null;
 	}
 
 	@Override
