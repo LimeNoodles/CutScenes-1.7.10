@@ -5,19 +5,15 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.ChatComponentTranslation;
-import net.minecraft.util.ChatStyle;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.StatCollector;
-
+import com.mojang.realmsclient.gui.ChatFormatting;
+import net.minecraft.util.text.Style;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.translation.I18n;
 import org.apache.logging.log4j.Level;
 
-import com.gendeathrow.cutscene.client.CutsceneSaveData;
 import com.gendeathrow.cutscene.core.CutScene;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 
 public class UpdateChecker 
 {
@@ -33,7 +29,7 @@ public class UpdateChecker
 		// DO NOT CHANGE THIS!
 		if(CutScene.VERSION == "GD_" + "CCS" + "_VER")
 		{
-			return EnumChatFormatting.RED + "THIS COPY OF CutScenes IS NOT FOR PUBLIC USE!";
+			return ChatFormatting.RED + "THIS COPY OF CutScenes IS NOT FOR PUBLIC USE!";
 		}
 		
 		try
@@ -59,16 +55,16 @@ public class UpdateChecker
 			
 			if(verStat == -1)
 			{
-				ret = new ChatComponentTranslation("updatemsg.cutscene.available", version).setChatStyle(new ChatStyle().setColor(EnumChatFormatting.RED)).getFormattedText();
+				ret = new TextComponentString("updatemsg.cutscene.available" + version).setStyle(new Style().setColor(TextFormatting.RED)).getFormattedText();
 			} else if(verStat == 0)
 			{
-				ret = new ChatComponentText(EnumChatFormatting.YELLOW + StatCollector.translateToLocalFormatted("updatemsg.cutscene.uptodate", CutScene.VERSION)).getFormattedText();
+				ret = new TextComponentString(ChatFormatting.YELLOW + I18n.translateToLocalFormatted("updatemsg.cutscene.uptodate", CutScene.VERSION)).getFormattedText();
 			} else if(verStat == 1)
 			{
-				ret = new ChatComponentText(EnumChatFormatting.RED + StatCollector.translateToLocalFormatted("updatemsg.cutscene.debug", CutScene.VERSION)).getFormattedText();
+				ret = new TextComponentString(ChatFormatting.RED + I18n.translateToLocalFormatted("updatemsg.cutscene.debug", CutScene.VERSION)).getFormattedText();
 			} else if(verStat == -2)
 			{
-				ret = new ChatComponentText(EnumChatFormatting.RED + StatCollector.translateToLocalFormatted("updatemsg.cutscene.error")).getFormattedText();
+				ret = new TextComponentString(ChatFormatting.RED + I18n.translateToLocalFormatted("updatemsg.cutscene.error")).getFormattedText();
 			}
 			
 			return ret;

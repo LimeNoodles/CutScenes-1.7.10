@@ -13,13 +13,14 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ReportedException;
 
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import org.apache.logging.log4j.Level;
 
 import com.gendeathrow.cutscene.core.CutScene;
 import com.gendeathrow.cutscene.core.Settings;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class CutsceneSaveData 
@@ -69,7 +70,7 @@ public class CutsceneSaveData
         {
         	System.out.println(Minecraft.getMinecraft().mcDataDir.getPath()+  "saves" + File.separator + Minecraft.getMinecraft().getIntegratedServer().getFolderName() + File.separator + fileName);
         	   file = new File(Minecraft.getMinecraft().mcDataDir.getPath(),  "saves" + File.separator + Minecraft.getMinecraft().getIntegratedServer().getFolderName() + File.separator + fileName);  	
-        }else if(MinecraftServer.getServer() != null)
+        }else if(FMLCommonHandler.instance().getMinecraftServerInstance().getServer() != null)
         {
         	CutScene.logger.log(Level.WARN, "Servers dont save/load data for what cutscenes a player has seen. Yet!!");
         	return false;
@@ -128,7 +129,7 @@ public class CutsceneSaveData
        if(mc.isIntegratedServerRunning())
        {
        	   file = new File(Minecraft.getMinecraft().mcDataDir.getPath(),  "saves" + File.separator + Minecraft.getMinecraft().getIntegratedServer().getFolderName() + File.separator + fileName);  	
-       }else if(MinecraftServer.getServer() != null)
+       }else if(FMLCommonHandler.instance().getMinecraftServerInstance().getServer() != null)
        {
     	   CutScene.logger.log(Level.WARN, "Servers dont save/load data for what cutscenes a player has seen. Yet!!");
     	   return;

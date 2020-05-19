@@ -3,8 +3,6 @@ package com.gendeathrow.cutscene.core;
 
 public class Settings 
 {
-
-	
 	public static boolean update_resources = true;
 	public static boolean dev_Enviroment = true;
 	
