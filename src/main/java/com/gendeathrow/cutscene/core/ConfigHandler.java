@@ -14,7 +14,7 @@ import org.apache.commons.compress.utils.IOUtils;
 
 import com.google.common.io.ByteStreams;
 
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 public class ConfigHandler 
 {

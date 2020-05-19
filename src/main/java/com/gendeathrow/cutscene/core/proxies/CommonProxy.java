@@ -1,10 +1,11 @@
 package com.gendeathrow.cutscene.core.proxies;
 
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-public class CommonProxy {
+public class CommonProxy
+{
 
 	public boolean isClient()
 	{
@@ -29,22 +30,20 @@ public class CommonProxy {
 
 	}
 
-	public void postInit(FMLPostInitializationEvent event) {
+	public void postInit(FMLPostInitializationEvent event)
+	{
 		// TODO Auto-generated method stub
 		
 	}
 
 	public void registerTickHandlers() 
 	{
-		//FMLCommonHandler.instance().bus().register(new ServerTick());
 			
 	}
 
 	public void registerEventHandlers() 
 	{
-//		EventHandler eventManager = new EventHandler();
-//		MinecraftForge.EVENT_BUS.register(eventManager);
-//		FMLCommonHandler.instance().bus().register(eventManager);
+
 	}
 	
 	public void registerRenders()

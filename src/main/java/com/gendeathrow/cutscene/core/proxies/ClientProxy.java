@@ -12,17 +12,16 @@ import com.gendeathrow.cutscene.core.CutScene;
 import com.gendeathrow.cutscene.network.packet.PacketScene;
 import com.gendeathrow.cutscene.utils.Utils;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class ClientProxy extends CommonProxy{
-
-
+public class ClientProxy extends CommonProxy
+{
 	private final Minecraft mc = Minecraft.getMinecraft();
 
 	@Override
@@ -70,11 +69,10 @@ public class ClientProxy extends CommonProxy{
 	}
 
 	@Override
-	public void postInit(FMLPostInitializationEvent event) {
+	public void postInit(FMLPostInitializationEvent event)
+	{
 		// TODO Auto-generated method stub
 		super.postInit(event);
-		
-		
 
 	}
 
@@ -87,27 +85,11 @@ public class ClientProxy extends CommonProxy{
 	}
 
 	@Override
-	public void registerEventHandlers() {
+	public void registerEventHandlers()
+	{
 
 		super.registerEventHandlers();
-
-		
 		MinecraftForge.EVENT_BUS.register(new Gui_EventHandler());
-		//MinecraftForge.EVENT_BUS.register(new SaveData());
-		
-//	
-//		UpdateNotification updateManager = new UpdateNotification();
-//		MinecraftForge.EVENT_BUS.register(updateManager);
-//		FMLCommonHandler.instance().bus().register(updateManager);
-//		
-//		SkillzKeybinds keybindManager = new SkillzKeybinds();
-//		keybindManager.register();
-//		
-//		MinecraftForge.EVENT_BUS.register(keybindManager);
-//		FMLCommonHandler.instance().bus().register(keybindManager);
-
-
-		
 		super.registerEventHandlers();
 	}
 	
